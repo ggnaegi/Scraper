@@ -1,5 +1,5 @@
-import {token}  from "../passport";
-import {Router} from "express";
+import {master, token} from "../passport";
+import {Router}        from "express";
 
 export const routerFactory = ({bodyValidation, idValidation}, {create, show, index, update = null, destroy = null}) => {
 
@@ -7,7 +7,7 @@ export const routerFactory = ({bodyValidation, idValidation}, {create, show, ind
 
     router.route("/")
         .get(index)
-        .post(token(), bodyValidation(true), create);
+        .post(master(), bodyValidation(true), create);
 
     router.route("/:id")
         .get(idValidation, show);
