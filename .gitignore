@@ -1,0 +1,45 @@
+node_modules
+public
+.tmp
+.idea
+.log
+dist
+docs
+.env
+npm-debug.log
+.nyc_output
+coverage
+cassettes
+build
+# Prerequisites
+.d
+
+# Compiled Object files
+.slo
+.lo
+.o
+.obj
+
+# Precompiled Headers
+.gch
+.pch
+
+# Compiled Dynamic libraries
+.so
+.dylib
+.dll
+
+# Fortran module files
+.mod
+.smod
+
+# Compiled Static libraries
+.lai
+.la
+.a
+.lib
+
+# Executables
+.exe
+.out
+.app
