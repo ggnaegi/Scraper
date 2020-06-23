@@ -1,10 +1,10 @@
 import {Router}                     from "express";
 import {login}                      from "./controller";
-import {master, userAuthentication} from "../../services/passport";
+import {userAuthentication} from "../../services/passport";
 
 const router = new Router();
 
 router.route("/")
-    .post(master(), userAuthentication(), login);
+    .post(userAuthentication(), login);
 
 export default router;
