@@ -7,7 +7,7 @@ export const routerFactory = ({bodyValidation, idValidation}, {create, show, ind
 
     router.route("/")
         .get(index)
-        .post(master(), bodyValidation(true), create);
+        .post(token(), bodyValidation(true), create);
 
     router.route("/:id")
         .get(idValidation, show);
