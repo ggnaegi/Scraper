@@ -55,7 +55,7 @@ export const update = function (model) {
     return function (req, res, next) {
         return model.findByPk(req.params.id)
             .then(notFound(res))
-            .then(aGroup => aGroup ? aGroup.update(req.body) : null)
+            .then((aGroup) => aGroup ? aGroup.update(req.body) : null)
             .then(success(res))
             .catch(next);
     };

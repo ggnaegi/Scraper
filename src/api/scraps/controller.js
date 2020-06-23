@@ -4,7 +4,7 @@ import {scrapLocationData} from "../../services/pricenow";
 
 export const create = (req, res, next) =>
     model.create({userId: req.user.id, locationId: req.params.id})
-        .then(scrap => scrapLocationData({locationId: req.params.id, scrapId: scrap.id}))
+        .then((scrap) => scrapLocationData({locationId: req.params.id, scrapId: scrap.id}))
         .then(success(res, 201))
         .catch(next);
 

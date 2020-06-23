@@ -22,7 +22,7 @@ const auth = ({authType} = {}) => (req, res, next) => {
             return res.status(401).end();
         }
 
-        req.logIn(user, {session: false}, err => {
+        req.logIn((user), {session: false}, err => {
             if (err) {
                 return res.status(401).end();
             }
@@ -36,7 +36,7 @@ const auth = ({authType} = {}) => (req, res, next) => {
  * Basic Auth Strategy
  */
 passport.use("password", new BasicStrategy((email, password, done) => {
-    emailValidation.validate(({email, password}), err => {
+    emailValidation.validate(({email, password}), (err) => {
         if (err) {
             done(err);
             return null;

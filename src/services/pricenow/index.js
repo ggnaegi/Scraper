@@ -50,7 +50,7 @@ const promisifiedEngineGet = ({client, url}) =>
  */
 const getHotelProductId = (result) =>
     new Promise((resolve) => {
-        resolve(result.products.find(product => product.name === "hotel").id);
+        resolve(result.products.find((product) => product.name === "hotel").id);
     });
 
 /***
@@ -63,7 +63,7 @@ const getHotelProductId = (result) =>
 const filterIdentifiers = ({locationId, hotelProductId, productDefinitions}) =>
     getIdentifiers({locationId}, {adults: 2, children: 0, trainAdults: 0, trainChildren: 0})
         .then((identifiers) => {
-            return {hotelProductId, identifiers: productDefinitions.filter(d => identifiers.includes(d.identifier))};
+            return {hotelProductId, identifiers: productDefinitions.filter((d) => identifiers.includes(d.identifier))};
         });
 
 /***
@@ -93,12 +93,12 @@ const getProductsIdentifiers = ({locationId}) =>
 const getPrices = ({locationId, identifiers}) =>
     new Promise((resolve, reject) => {
         let promises = [];
-        identifiers.forEach(identifier => {
+        identifiers.forEach((identifier) => {
             promises.push(promisifiedEngineGet({
                 client: engineApiClient,
                 url: `${locationId}` + "/products/" + `${identifier.id}` + "/prices?" + getTimeSpanParameter()
             })
-                .then(result => {
+                .then((result) => {
                     return {
                         identifierId: `${identifier.id}`,
                         roomId: `${identifier.attributes.room.value}`,
@@ -133,7 +133,7 @@ const getAvailabilities = ({locationId, hotelProductId}) =>
  * @returns {{customPrice: *, price: *}}
  */
 const getPriceForDate = ({priceStat, fDate}) => {
-    const statForDate = priceStat.prices.find(x => x.validAt === fDate);
+    const statForDate = priceStat.prices.find((x) => x.validAt === fDate);
     return {
         priceForDate: fDate,
         datePrice: statForDate.price,
@@ -149,7 +149,7 @@ const getPriceForDate = ({priceStat, fDate}) => {
  */
 const getPricesForDate = ({priceStats, fDate}) => {
     let pricesForDate = {};
-    priceStats.forEach(priceStat => {
+    priceStats.forEach((priceStat) => {
         const priceForDate = getPriceForDate({priceStat, fDate});
         pricesForDate[`${priceStat.roomId}`] = priceForDate;
     });
@@ -206,9 +206,9 @@ export const scrapLocationData = ({locationId, scrapId}) =>
             return Promise.all(promises);
         })
         .then((results) => assembleResults({priceStats: results[0], availabilities: results[1]}))
-        .then((assembledResults) => Price.bulkCreate(assembledResults.map(obj => ({...obj, scrapId}))))
+        .then((assembledResults) => Price.bulkCreate(assembledResults.map((obj) => ({...obj, scrapId}))))
         .then((dbResults) => {
-            return dbResults.map(x => x.view());
+            return dbResults.map((x) => x.view());
         });
 
 
