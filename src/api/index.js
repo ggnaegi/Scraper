@@ -3,7 +3,7 @@ import config   from "../config";
 
 import auth      from "./auth";
 import locations from "./locations";
-import users from "./users";
+import users     from "./users";
 
 const baseRouter = new Router();
 const router = new Router();

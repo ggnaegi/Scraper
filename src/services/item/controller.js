@@ -9,7 +9,7 @@ import {notFound, success, successFullDeletion} from "../response";
 export const create = function (model) {
     return function (req, res, next) {
         return model.create(req.body)
-            .then(object => object ? object.view(): null)
+            .then((object) => object ? object.view() : null)
             .then(success(res, 201))
             .catch(next);
     };

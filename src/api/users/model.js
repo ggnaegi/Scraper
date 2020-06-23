@@ -20,7 +20,7 @@ export class User extends Item {
      * @returns {Promise<unknown>}
      */
     authenticate(password) {
-        return bcrypt.compare(password, this.password).then(valid => valid ? this : false);
+        return bcrypt.compare(password, this.password).then((valid) => valid ? this : false);
     }
 }
 
@@ -71,7 +71,7 @@ User.init({
  * @param user
  * @returns {Promise<unknown>}
  */
-const hashPassword = user => {
+const hashPassword = (user) => {
     return new Promise((resolve, reject) => {
         const rounds = config.env === "test" ? 1 : 9;
         bcrypt.hash(user.password, rounds, (err, hash) => {
@@ -84,16 +84,10 @@ const hashPassword = user => {
     });
 };
 
-User.addHook("beforeValidate", async user => {
+User.addHook("beforeValidate", async (user) => {
     if (user.changed("password") || user.isNewRecord) {
         await hashPassword(user);
     }
-});
-
-User.addHook("afterUpdate", async user => {
-});
-
-User.addHook("afterCreate", async user => {
 });
 
 export default User;

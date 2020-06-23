@@ -25,7 +25,7 @@ export default (apiRoot, routes) => {
     app.use(cors());
     app.use(compression());
 
-    if(config.env === "development"){
+    if (config.env === "development") {
         app.use(morgan("dev"));
     }
 

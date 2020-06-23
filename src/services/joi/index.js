@@ -1,5 +1,5 @@
-import Joi                                                                     from "@hapi/joi";
-import {ValidationError}                                                       from "../utils";
+import Joi               from "@hapi/joi";
+import {ValidationError} from "../utils";
 
 const idDefinition = Joi.number().integer().min(1).required();
 const stringIdDefinition = Joi.string().min(3).max(255).required();
@@ -9,17 +9,17 @@ const idValidationSchema = Joi.object({
 });
 
 const stringIdValidationSchema = Joi.object({
-    id:stringIdDefinition
+    id: stringIdDefinition
 });
 
 const roomIdValidationSchema = Joi.object({
-    id:stringIdDefinition,
-    roomId:stringIdDefinition
+    id: stringIdDefinition,
+    roomId: stringIdDefinition
 });
 
 const scrapIdValidationSchema = Joi.object({
-    id:stringIdDefinition,
-    scrapId:idDefinition
+    id: stringIdDefinition,
+    scrapId: idDefinition
 });
 
 /***
@@ -52,33 +52,33 @@ export const bodyValidation = function (schema, post = false) {
  * Validating Url Parameters for Rooms
  * @returns {function(...[*]=)}
  */
-export const roomIdValidation = function() {
+export const roomIdValidation = function () {
     return function (req, res, next) {
         const {error} = roomIdValidationSchema.validate(req.params);
 
-        if(!error){
+        if (!error) {
             return next();
         }
 
         new ValidationError(error).json(req, res, 422);
-    }
-}
+    };
+};
 
 /***
  * Validating Url Parameters for Scraps
  * @returns {function(...[*]=)}
  */
-export const scrapIdValidation = function(){
-    return function (req, res, next){
+export const scrapIdValidation = function () {
+    return function (req, res, next) {
         const {error} = scrapIdValidationSchema.validate(req.params);
 
-        if(!error){
+        if (!error) {
             return next();
         }
 
         new ValidationError(error).json(req, res, 422);
-    }
-}
+    };
+};
 
 /***
  * Validating Ids and Hash passed as parameters

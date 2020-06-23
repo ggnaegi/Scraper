@@ -11,4 +11,4 @@ export const sign = (id, options, method = jwtSign) =>
 
 export const signSync = (id, options) => sign(id, options, jwt.sign);
 
-export const verify = token => jwtVerify(token, config.jwtSecret);
+export const verify = (token) => jwtVerify(token, config.jwtSecret);

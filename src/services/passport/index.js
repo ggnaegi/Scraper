@@ -1,10 +1,10 @@
-import passport                                           from "passport";
-import {BasicStrategy}                                    from "passport-http";
-import {Strategy as BearerStrategy}                       from "passport-http-bearer";
-import {ExtractJwt, Strategy as JwtStrategy}              from "passport-jwt";
-import config                                             from "../../config";
-import User                                              from "../../api/users/model";
-import {emailValidation}                                  from "./schema";
+import passport                              from "passport";
+import {BasicStrategy}                       from "passport-http";
+import {Strategy as BearerStrategy}          from "passport-http-bearer";
+import {ExtractJwt, Strategy as JwtStrategy} from "passport-jwt";
+import config                                from "../../config";
+import User                                  from "../../api/users/model";
+import {emailValidation}                     from "./schema";
 
 
 /***
@@ -36,19 +36,19 @@ const auth = ({authType} = {}) => (req, res, next) => {
  * Basic Auth Strategy
  */
 passport.use("password", new BasicStrategy((email, password, done) => {
-    emailValidation.validate({email, password}, err => {
+    emailValidation.validate(({email, password}), err => {
         if (err) {
             done(err);
             return null;
         }
     });
-    User.findOne({where: {email}}).then(user => {
+    User.findOne({where: {email}}).then((user) => {
         if (!user) {
             done(true);
             return null;
         }
 
-        return user.authenticate(password).then(user => {
+        return user.authenticate(password).then((user) => {
             done(null, user);
             return null;
         }).catch(done);
@@ -60,7 +60,7 @@ passport.use("password", new BasicStrategy((email, password, done) => {
  * Master Authentication, only for Demo Purposes
  */
 passport.use("master", new BearerStrategy((token, done) => {
-    done(null, token === config.masterKey?{}:false);
+    done(null, token === config.masterKey ? {} : false);
 }));
 
 passport.use("token", new JwtStrategy({
@@ -71,7 +71,7 @@ passport.use("token", new JwtStrategy({
         ExtractJwt.fromAuthHeaderWithScheme("Bearer")
     ])
 }, ({id}, done) => {
-    User.findByPk(id).then(user => {
+    User.findByPk(id).then((user) => {
         done(null, user);
         return null;
     }).catch(done);
@@ -80,4 +80,4 @@ passport.use("token", new JwtStrategy({
 
 export const token = () => auth({authType: "token"});
 export const master = () => auth({authType: "master"});
-export const userAuthentication = () => auth({authType:"password"});
+export const userAuthentication = () => auth({authType: "password"});

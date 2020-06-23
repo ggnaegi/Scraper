@@ -10,4 +10,4 @@ const userSchema = Joi.object({
 });
 
 export const idValidation = idValidationService(false);
-export const bodyValidation = post => bodyValidationService(userSchema, post);
+export const bodyValidation = (post) => bodyValidationService(userSchema, post);

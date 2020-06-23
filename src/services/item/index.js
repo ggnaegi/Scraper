@@ -1,5 +1,5 @@
-import {master, token} from "../passport";
-import {Router}        from "express";
+import {token}  from "../passport";
+import {Router} from "express";
 
 export const routerFactory = ({bodyValidation, idValidation}, {create, show, index, update = null, destroy = null}) => {
 
@@ -12,7 +12,7 @@ export const routerFactory = ({bodyValidation, idValidation}, {create, show, ind
     router.route("/:id")
         .get(idValidation, show);
 
-    if(destroy) {
+    if (destroy) {
         router.route("/:id")
             .delete(token(), idValidation, destroy);
     }

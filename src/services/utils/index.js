@@ -5,18 +5,19 @@
  */
 import {baseErrorDescriptor, detailErrorDescriptor, GenericError} from "../error";
 import path                                                       from "path";
-import config from "../../config";
+import config                                                     from "../../config";
 
 const getTwoDigitsDateElement = (dateElement) => {
-    return `${dateElement}`<10? '0'+`${dateElement}`:''+`${dateElement}`
-}
+    return `${dateElement}` < 10 ? "0" + `${dateElement}` : "" + `${dateElement}`;
+};
 
 const getDateYearMonthAndDay = ({d}) => {
-    return {year:new Intl.DateTimeFormat("en", {year:"numeric"}).format(d),
-        month:getTwoDigitsDateElement(d.getMonth()+1),
-        day:getTwoDigitsDateElement(d.getDate())
+    return {
+        year: new Intl.DateTimeFormat("en", {year: "numeric"}).format(d),
+        month: getTwoDigitsDateElement(d.getMonth() + 1),
+        day: getTwoDigitsDateElement(d.getDate())
     };
-}
+};
 
 /***
  * Formatting Date as format differ from an API to the other
@@ -25,8 +26,8 @@ const getDateYearMonthAndDay = ({d}) => {
 export const formatDate = ({jsonDate}) => {
     const d = new Date(`${jsonDate}`);
     const ymd = getDateYearMonthAndDay({d});
-    return `${ymd.year}`+"-"+`${ymd.month}`+"-"+`${ymd.day}`;
-}
+    return `${ymd.year}` + "-" + `${ymd.month}` + "-" + `${ymd.day}`;
+};
 
 /***
  * Getting Time Span Parameter for pricenow apis
@@ -37,12 +38,12 @@ export const formatDate = ({jsonDate}) => {
 export const getTimeSpanParameter = () => {
     let d = new Date();
     const src = getDateYearMonthAndDay({d});
-    d.setMonth(d.getMonth()+2);
+    d.setMonth(d.getMonth() + 2);
     const dst = getDateYearMonthAndDay({d});
-    return "from="+`${src.year}`+"-"+`${src.month}`+"-01&to="+`${dst.year}`+"-"+`${dst.month}`+"-01";
-}
+    return "from=" + `${src.year}` + "-" + `${src.month}` + "-01&to=" + `${dst.year}` + "-" + `${dst.month}` + "-01";
+};
 
-export const hyphenate = str => {
+export const hyphenate = (str) => {
     return str.replace(/([a-zA-Z])(?=[A-Z])/g, "$1-").toLowerCase();
 };
 
@@ -76,7 +77,7 @@ export class BooleanParsingError extends Error {
  * @param value
  * @returns {*}
  */
-export const checkString = value => {
+export const checkString = (value) => {
     if (typeof value !== "string" && !value instanceof String) {
         throw new GenericError({
             ...CheckObjectTypeError,
@@ -124,7 +125,7 @@ export class ValidationError extends Error {
         }
 
         let errors = [];
-        this.joiValidationError.details.forEach(validationError => {
+        this.joiValidationError.details.forEach((validationError) => {
             errors.push({
                 message: validationError.message,
                 type: validationError.type,

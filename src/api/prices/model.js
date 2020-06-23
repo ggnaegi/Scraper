@@ -8,7 +8,7 @@ export class Price extends Item {
     view() {
         return {
             id: this.id,
-            scrapId:this.scrapId,
+            scrapId: this.scrapId,
             roomId: this.roomId,
             priceForDate: this.priceForDate,
             datePrice: this.datePrice,

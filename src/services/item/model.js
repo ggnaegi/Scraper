@@ -1,6 +1,6 @@
-import {Model}                      from "sequelize";
-import {NoObjectForPrimaryKeyError} from "../sequelize";
-import {detailErrorDescriptor, GenericError}   from "../error";
+import {Model}                               from "sequelize";
+import {NoObjectForPrimaryKeyError}          from "../sequelize";
+import {detailErrorDescriptor, GenericError} from "../error";
 
 export class Item extends Model {
 

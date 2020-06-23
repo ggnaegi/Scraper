@@ -2,7 +2,7 @@ import {notFound, success, successFullDeletion} from "../../services/response";
 import Room                                     from "./model";
 
 export const create = (req, res, next) =>
-    Room.create({id:req.body.id, capacity:req.body.capacity, userId:req.user.id, locationId: req.params.id})
+    Room.create({id: req.body.id, capacity: req.body.capacity, userId: req.user.id, locationId: req.params.id})
         .then(success(res, 201))
         .catch(next);
 

@@ -1,11 +1,11 @@
-export const success = (res, status) => entity => {
+export const success = (res, status) => (entity) => {
     if (entity) {
         res.status(status || 200).json(entity);
     }
     return null;
 };
 
-export const successFullDeletion = res => success => {
+export const successFullDeletion = (res) => (success) => {
     if (success) {
         res.status(200).json("Deleted Successfully");
         return null;
@@ -14,7 +14,7 @@ export const successFullDeletion = res => success => {
     return null;
 };
 
-export const notFound = res => entity => {
+export const notFound = (res) => (entity) => {
     if (entity) {
         return entity;
     }

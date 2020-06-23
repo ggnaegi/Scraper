@@ -8,7 +8,7 @@ export const sequelize = new Sequelize(config.dbName, config.dbUserName, config.
     dialect: config.dbDialect,
     pool: {max: 400, min: 0, idle: 10000},
     timeZone: config.timeZone
-})
+});
 
 export const NoObjectForPrimaryKeyError = baseErrorDescriptor({
     name: "NoObjectForPrimaryKeyError",

@@ -3,8 +3,8 @@ import {index as _index, show as _show} from "../../services/item/controller";
 import {success}                        from "../../services/response";
 
 export const create = (req, res, next) =>
-    model.create({id:req.body.id, userId:req.user.id})
-        .then(object => object ? object.view(): null)
+    model.create({id: req.body.id, userId: req.user.id})
+        .then((object) => object ? object.view() : null)
         .then(success(res, 201))
         .catch(next);
 

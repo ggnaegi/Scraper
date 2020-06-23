@@ -44,18 +44,18 @@ const config = {
         port: process.env.PORT || 9002,
         ip: process.env.IP || "127.0.0.1",
         apiRoot: process.env.API_ROOT || "",
-        dbUserName: requireProcessEnv({name:"DB_USER_NAME"}),
-        dbPassword: requireProcessEnv({name:"DB_PASSWORD"}),
-        dbName: requireProcessEnv({name:"DB_NAME"}),
-        dbDialect: requireProcessEnv({name:"DB_DIALECT"}),
-        dbHost: requireProcessEnv({name:"DB_HOST"}),
-        dbPort: requireProcessEnv({name:"DB_PORT"}),
-        jwtSecret: requireProcessEnv({name:"JWT_SECRET"}),
-        masterKey: requireProcessEnv({name:"MASTER_KEY"}),
-        sequelizeLogging: requireProcessEnv({name:"SEQUELIZE_LOGGING"}, true),
-        timeZone: requireProcessEnv({name:"TZ"}),
-        enableClustering: requireProcessEnv({name:"ENABLE_CLUSTERING"}, true),
-        errorTypesBaseUrl: requireProcessEnv({name:"ERROR_TYPES_BASE_URL"})
+        dbUserName: requireProcessEnv({name: "DB_USER_NAME"}),
+        dbPassword: requireProcessEnv({name: "DB_PASSWORD"}),
+        dbName: requireProcessEnv({name: "DB_NAME"}),
+        dbDialect: requireProcessEnv({name: "DB_DIALECT"}),
+        dbHost: requireProcessEnv({name: "DB_HOST"}),
+        dbPort: requireProcessEnv({name: "DB_PORT"}),
+        jwtSecret: requireProcessEnv({name: "JWT_SECRET"}),
+        masterKey: requireProcessEnv({name: "MASTER_KEY"}),
+        sequelizeLogging: requireProcessEnv({name: "SEQUELIZE_LOGGING"}, true),
+        timeZone: requireProcessEnv({name: "TZ"}),
+        enableClustering: requireProcessEnv({name: "ENABLE_CLUSTERING"}, true),
+        errorTypesBaseUrl: requireProcessEnv({name: "ERROR_TYPES_BASE_URL"})
     }
 };
 

@@ -1,10 +1,10 @@
-import {Scrap as model}                 from "./model";
-import {notFound, success}              from "../../services/response";
-import {scrapLocationData}              from "../../services/pricenow";
+import {Scrap as model}    from "./model";
+import {notFound, success} from "../../services/response";
+import {scrapLocationData} from "../../services/pricenow";
 
 export const create = (req, res, next) =>
-    model.create({userId:req.user.id, locationId: req.params.id})
-        .then(scrap => scrapLocationData({locationId:req.params.id, scrapId:scrap.id}))
+    model.create({userId: req.user.id, locationId: req.params.id})
+        .then(scrap => scrapLocationData({locationId: req.params.id, scrapId: scrap.id}))
         .then(success(res, 201))
         .catch(next);
 
