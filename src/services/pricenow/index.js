@@ -33,7 +33,6 @@ const getIdentifiers = ({locationId}, {adults, children, trainAdults, trainChild
  */
 const promisifiedEngineGet = ({client, url}) =>
     new Promise((resolve, reject) => {
-        console.log(`${url}`);
         client.get(`${url}`, (err, res, body) => {
             if (err) {
                 return reject(err);
